@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. EFECTO NAVBAR MODO OSCURO PREMIUM
+    // 1. EFECTO NAVBAR MODO CLARO PREMIUM
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 2. ANIMACIÓN DE REVELADO (La que estaba fallando)
+    // 2. ANIMACIÓN DE REVELADO
     const reveals = document.querySelectorAll('.reveal');
     const revealOnScroll = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -31,11 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
         revealOnScroll.observe(reveal);
     });
 
+    // 3. EFECTO INCLINACIÓN 3D ELIMINADO PARA MAXIMIZAR RENDIMIENTO
+    
+}); 
 
 // --- SISTEMA DE GALERÍA DINÁMICA Y LIGHTBOX ---
 
 const irudiDatuak = [
-    // --- ADOPTANTE PC ---
     { rol: 'adoptante', gailua: 'pc', izena: 'Saioa Hasi', src: './capturas/Login/LoginPC.png' },
     { rol: 'adoptante', gailua: 'pc', izena: 'Erregistroa', src: './capturas/Registro/RegistroPC.png' },
     { rol: 'adoptante', gailua: 'pc', izena: 'Esploratu (Menu Nagusia)', src: './capturas/Adoptante/PC/AdoptatzailePage.png' },
@@ -47,7 +49,6 @@ const irudiDatuak = [
     { rol: 'adoptante', gailua: 'pc', izena: 'Txat Zerrenda', src: './capturas/Adoptante/PC/TxatenZerrendaPage.png' },
     { rol: 'adoptante', gailua: 'pc', izena: 'Txat Gela', src: './capturas/Adoptante/PC/TxatenGela.png' },
 
-    // --- PROTEKTORA PC ---
     { rol: 'protektora', gailua: 'pc', izena: 'Saioa Hasi', src: './capturas/Login/LoginPC.png' },
     { rol: 'protektora', gailua: 'pc', izena: 'Panela (Estatistikak)', src: './capturas/Protektora/PC/ProtektoraPage.png' },
     { rol: 'protektora', gailua: 'pc', izena: 'Animaliak Kudeatu', src: './capturas/Protektora/PC/NireAnimaliakPage.png' },
@@ -81,16 +82,17 @@ window.kargatuGaleria = function(rol, gailua) {
     unekoArgazkiak = irudiDatuak.filter(img => img.rol === rol && img.gailua === gailua);
 
     unekoArgazkiak.forEach((img, index) => {
+        // Adaptado al tema claro (text-slate-800, border-slate-200, bg-white)
         const html = `
-            <div class="tilt-card rounded-2xl overflow-hidden border border-white/10 group bg-white/5 cursor-pointer" onclick="irekiLightbox(${index})">
+            <div class="tilt-card rounded-2xl overflow-hidden border border-slate-200 group bg-white cursor-pointer shadow-sm hover:shadow-md transition-shadow" onclick="irekiLightbox(${index})">
                 <div class="overflow-hidden aspect-video relative">
-                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+                    <div class="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
                         <i class="fa-solid fa-magnifying-glass-plus text-white text-4xl transform scale-50 group-hover:scale-100 transition-transform duration-300"></i>
                     </div>
-                    <img src="${img.src}" alt="${img.izena}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 relative z-0">
+                    <img src="${img.src}" alt="${img.izena}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform relative z-0">
                 </div>
-                <div class="p-4 border-t border-white/10">
-                    <h3 class="text-white font-bold text-lg text-center">${img.izena}</h3>
+                <div class="p-4 border-t border-slate-100">
+                    <h3 class="text-slate-800 font-bold text-lg text-center">${img.izena}</h3>
                 </div>
             </div>
         `;
