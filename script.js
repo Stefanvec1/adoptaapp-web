@@ -88,45 +88,109 @@ const irudiDatuak = [
     { rol: 'protektora', gailua: 'pc', izena: 'Ezarpenak 2', src: './capturas/Protektora/PC/EzarpenakPage2.png' }
 ];
 
-// Función que se ejecuta al hacer clic en el menú
+// Variables globales para controlar la galería ampliada
+let unekoArgazkiak = [];
+let unekoIndizea = 0;
+
+// Función que se ejecuta al hacer clic en el menú (Modificada para guardar la lista de fotos)
 window.kargatuGaleria = function(rol, gailua) {
-    if(gailua === 'movil') return; // Bloqueado hasta que tengas las fotos de móvil
+    if(gailua === 'movil') return; 
 
     const galeriaSeccion = document.getElementById('galeria');
     const galeriaGrid = document.getElementById('galeria-grid');
     const titulua = document.getElementById('galeria-titulua');
     const azpititulua = document.getElementById('galeria-azpititulua');
 
-    // Cambiar los textos
     const izenRola = rol === 'adoptante' ? 'Adoptatzailea' : 'Babeslekua / Elkartea';
     titulua.innerText = izenRola;
     azpititulua.innerText = gailua === 'pc' ? 'Windows (PC) Bertsioa' : 'Android (Mugikorra) Bertsioa';
 
-    // Limpiar fotos anteriores
     galeriaGrid.innerHTML = '';
 
-    // Filtrar fotos que coincidan con lo que ha tocado el usuario
-    const argazkiak = irudiDatuak.filter(img => img.rol === rol && img.gailua === gailua);
+    // Guardamos las fotos actuales en la variable global para el Lightbox
+    unekoArgazkiak = irudiDatuak.filter(img => img.rol === rol && img.gailua === gailua);
 
-    // Generar el HTML de las tarjetas para cada foto
-    argazkiak.forEach(img => {
+    unekoArgazkiak.forEach((img, index) => {
+        // Añadimos el onclick y un icono de Lupa al pasar el ratón
         const html = `
-            <div class="tilt-card rounded-2xl overflow-hidden border border-white/10 group bg-white/5">
-                <div class="overflow-hidden aspect-video">
-                    <img src="${img.src}" alt="${img.izena}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="tilt-card rounded-2xl overflow-hidden border border-white/10 group bg-white/5 cursor-pointer" onclick="irekiLightbox(${index})">
+                <div class="overflow-hidden aspect-video relative">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-10">
+                        <i class="fa-solid fa-magnifying-glass-plus text-white text-4xl transform scale-50 group-hover:scale-100 transition-transform duration-300"></i>
+                    </div>
+                    <img src="${img.src}" alt="${img.izena}" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 relative z-0">
                 </div>
                 <div class="p-4 border-t border-white/10">
-                    <h3 class="text-white font-bold text-lg">${img.izena}</h3>
+                    <h3 class="text-white font-bold text-lg text-center">${img.izena}</h3>
                 </div>
             </div>
         `;
         galeriaGrid.innerHTML += html;
     });
 
-    // Mostrar la sección y hacer scroll suave hacia ella
     galeriaSeccion.classList.remove('hidden');
-    setTimeout(() => {
-        galeriaSeccion.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    setTimeout(() => { galeriaSeccion.scrollIntoView({ behavior: 'smooth' }); }, 100);
 };
+
+// --- LOGICA DEL LIGHTBOX (AMPLIAR FOTOS) ---
+
+window.irekiLightbox = function(index) {
+    unekoIndizea = index;
+    eguneratuLightboxArgazkia();
+    
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    
+    lb.classList.remove('hidden');
+    // Animación suave de entrada
+    setTimeout(() => {
+        lb.classList.remove('opacity-0');
+        img.classList.remove('scale-95');
+        img.classList.add('scale-100');
+    }, 10);
+    
+    document.body.style.overflow = 'hidden'; // Bloquear scroll de la página
+};
+
+window.itxiLightbox = function() {
+    const lb = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    
+    lb.classList.add('opacity-0');
+    img.classList.remove('scale-100');
+    img.classList.add('scale-95');
+    
+    setTimeout(() => {
+        lb.classList.add('hidden');
+    }, 300);
+    
+    document.body.style.overflow = 'auto'; // Devolver scroll a la página
+};
+
+window.aldatuArgazkia = function(norabidea) {
+    unekoIndizea += norabidea;
+    // Bucle: si pasas de la última, vuelve a la primera
+    if (unekoIndizea < 0) unekoIndizea = unekoArgazkiak.length - 1;
+    if (unekoIndizea >= unekoArgazkiak.length) unekoIndizea = 0;
+    
+    eguneratuLightboxArgazkia();
+};
+
+function eguneratuLightboxArgazkia() {
+    const imgElement = document.getElementById('lightbox-img');
+    const textElement = document.getElementById('lightbox-text');
+    const argazkia = unekoArgazkiak[unekoIndizea];
+    
+    imgElement.src = argazkia.src;
+    textElement.innerText = argazkia.izena;
+}
+
+// Controlar el Lightbox con el teclado (Flechas y ESC)
+document.addEventListener('keydown', (e) => {
+    const lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('hidden')) {
+        if (e.key === 'Escape') itxiLightbox();
+        else if (e.key === 'ArrowRight') aldatuArgazkia(1);
+        else if (e.key === 'ArrowLeft') aldatuArgazkia(-1);
+    }
 });
