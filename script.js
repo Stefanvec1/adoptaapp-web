@@ -31,34 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         revealOnScroll.observe(reveal);
     });
 
-    // 3. EFECTO INCLINACIÓN 3D
-    const tiltCards = document.querySelectorAll('.tilt-card');
-    tiltCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; 
-            const y = e.clientY - rect.top;  
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = ((y - centerY) / centerY) * -10;
-            const rotateY = ((x - centerX) / centerX) * 10;
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-        });
-        
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            card.style.transition = "transform 0.5s ease"; 
-        });
-        
-        card.addEventListener('mouseenter', () => {
-            card.style.transition = "none";
-        });
-    });
-    
-}); // <--- ESTE ERA EL CORCHETE QUE FALTABA Y ROMPÍA TODO
 
 // --- SISTEMA DE GALERÍA DINÁMICA Y LIGHTBOX ---
 
@@ -80,7 +52,7 @@ const irudiDatuak = [
     { rol: 'protektora', gailua: 'pc', izena: 'Panela (Estatistikak)', src: './capturas/Protektora/PC/ProtektoraPage.png' },
     { rol: 'protektora', gailua: 'pc', izena: 'Animaliak Kudeatu', src: './capturas/Protektora/PC/NireAnimaliakPage.png' },
     { rol: 'protektora', gailua: 'pc', izena: 'Animalia Berria Igo', src: './capturas/Protektora/PC/AnimaliIgoPage.png' },
-    { rol: 'protektora', gailua: 'pc', izena: 'Animalia Editatu', src: './capturas/Protektora/PC/AnimaliaEditatuPage.png' },
+    { rol: 'protektora', gailua: 'pc', izena: 'Animalia Editatu', src: './capturas/Protektora/PC/AnimaliEditatuPage.png' },
     { rol: 'protektora', gailua: 'pc', izena: 'Final Zoriontsuak (Adoptatuak)', src: './capturas/Protektora/PC/AdoptatuakPage.png' },
     { rol: 'protektora', gailua: 'pc', izena: 'Egutegia', src: './capturas/Protektora/PC/EgutegiaPage.png' },
     { rol: 'protektora', gailua: 'pc', izena: 'Txat Zerrenda', src: './capturas/Protektora/PC/TxatZerrendaPage.png' },
