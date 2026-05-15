@@ -1,12 +1,8 @@
-/* PALETA: Luxury Tech (Negro, Azul Eléctrico, Dorado y Blanco) */
 :root {
-    --bg-dark: #050505;           /* Negro profundo */
-    --bg-panel: #0a0a0b;          /* Negro un poco más claro para tarjetas */
-    --electric-blue: #0052FF;     /* Azul Eléctrico vibrante */
-    --electric-blue-glow: rgba(0, 82, 255, 0.4);
-    --gold: #D4AF37;              /* Dorado clásico */
-    --gold-glow: rgba(212, 175, 55, 0.3);
-    --slate-text: #94A3B8;        
+    --emerald-500: #10b981;
+    --teal-600: #0d9488;
+    --slate-800: #1e293b;
+    --bg-light: #f8fafc; /* Fondo clarito (slate-50) */
 }
 
 html {
@@ -15,174 +11,86 @@ html {
 
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: var(--bg-dark);
-    color: white;
+    background-color: var(--bg-light);
+    color: var(--slate-800);
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* VITAL: Evita que se pueda hacer scroll hacia los lados en móvil */
-    -webkit-font-smoothing: antialiased; /* Texto más nítido en móviles */
+    overflow-x: hidden; /* Evita scroll lateral en móvil */
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Scrollbar Personalizada Premium */
-::-webkit-scrollbar { width: 6px; } /* Más fina en móvil */
+/* Scrollbar Neutra (Sin colores raros) */
+::-webkit-scrollbar { width: 6px; } 
 @media (min-width: 768px) { ::-webkit-scrollbar { width: 8px; } }
-::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { 
-    background: linear-gradient(to bottom, var(--electric-blue), var(--gold)); 
+    background: #cbd5e1; /* Gris clarito */
     border-radius: 10px; 
 }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-/* --- ORBES RESPONSIVOS (Magia pura en móvil y PC) --- */
+/* --- ORBES RESPONSIVOS (Verde y Teal) --- */
 .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(80px); /* Menos blur en móvil para que no vaya a tirones */
+    filter: blur(80px);
     z-index: 0;
-    opacity: 0.3;
+    opacity: 0.15; /* Transparentes para que no molesten en el texto negro */
+    pointer-events: none;
     animation: float 12s infinite ease-in-out alternate;
-    pointer-events: none; /* Evita que molesten al hacer clic en botones */
 }
 @media (min-width: 768px) { .orb { filter: blur(120px); } }
 
 .orb-1 {
-    width: 80vw; max-width: 500px; 
-    height: 80vw; max-height: 500px;
-    background: var(--electric-blue);
-    top: -10%; left: -20%;
+    width: 80vw; max-width: 500px; height: 80vw; max-height: 500px;
+    background: var(--emerald-500); top: -10%; left: -20%;
 }
 .orb-2 {
-    width: 70vw; max-width: 400px; 
-    height: 70vw; max-height: 400px;
-    background: var(--gold);
-    bottom: 5%; right: -10%;
-    animation-delay: -6s;
+    width: 70vw; max-width: 400px; height: 70vw; max-height: 400px;
+    background: var(--teal-600); bottom: 5%; right: -10%; animation-delay: -6s;
 }
 
-/* --- NAVBAR CRISTAL NEGRO --- */
+/* --- NAVBAR CRISTAL BLANCO --- */
 .nav-active {
-    background: rgba(5, 5, 5, 0.85) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--gold-glow) !important;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-/* --- TARJETAS GLASSMORPHISM OPTIMIZADAS --- */
+/* --- TARJETAS OPTIMIZADAS --- */
 .tilt-card {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #e2e8f0;
     border-radius: 1.5rem;
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.4s, box-shadow 0.4s;
+    transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
+    will-change: transform;
 }
 
-/* Efectos HOVER (Solo se activan si estás en un PC con ratón) */
 @media (hover: hover) {
     .tilt-card:hover {
-        border-color: var(--gold);
-        box-shadow: 0 20px 40px -10px var(--electric-blue-glow);
-        background: rgba(255, 255, 255, 0.04);
+        border-color: var(--emerald-500);
+        box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.15);
+        background: #ffffff;
         transform: translateY(-5px);
     }
-    
-    .btn-android:hover {
-        background: #0044D6;
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 15px 30px -5px var(--electric-blue-glow);
-    }
-
-    .btn-windows:hover {
-        background: var(--gold);
-        color: #000;
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 15px 30px -5px var(--gold-glow);
-    }
 }
+.tilt-card:active { transform: scale(0.96); transition: transform 0.1s; }
 
-/* Efecto ACTIVE (Lo que pasa cuando tocas con el dedo en el móvil) */
-.tilt-card:active, .btn-premium:active {
-    transform: scale(0.96);
-    transition: transform 0.1s;
-}
-
-/* --- BOTONES PREMIUM RESPONSIVOS --- */
-.btn-premium {
-    position: relative;
-    display: inline-flex; align-items: center; justify-content: center;
-    gap: 0.6rem;
-    padding: 1rem 1.2rem; /* Más pequeños en móvil para que quepan bien */
-    border-radius: 1rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-size: 0.85rem;
-    transition: all 0.3s ease;
-    width: 100%; /* En móvil ocupan todo el ancho, como los botones de Apple */
-}
-
-/* Cuando la pantalla es de PC o Tablet, vuelven a su tamaño normal */
-@media (min-width: 640px) {
-    .btn-premium {
-        padding: 1.2rem 2.5rem;
-        font-size: 1rem;
-        gap: 0.8rem;
-        letter-spacing: 1px;
-        width: auto; 
-    }
-}
-
-.btn-android {
-    background: var(--electric-blue);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 16px -4px var(--electric-blue-glow);
-}
-
-.btn-windows {
-    background: var(--bg-panel);
-    color: var(--gold);
-    border: 1px solid var(--gold);
-    box-shadow: 0 8px 16px -4px rgba(0,0,0,0.5);
-}
-
-/* --- ICONOS --- */
-.icon-box {
-    width: 50px; height: 50px; /* Más pequeños en móvil */
-    border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--gold-glow);
-    color: var(--gold);
-}
-@media (min-width: 768px) {
-    .icon-box { width: 60px; height: 60px; font-size: 1.5rem; border-radius: 18px; }
-}
-
-/* --- ANIMACIONES DE RENDIMIENTO (Mejora de FPS) --- */
+/* --- ANIMACIONES DE RENDIMIENTO --- */
 @keyframes float {
     0% { transform: translateY(0px) rotate(0deg); }
-    100% { transform: translateY(20px) rotate(3deg); } /* Movimiento más sutil */
+    100% { transform: translateY(20px) rotate(3deg); } 
 }
-
-.floating { 
-    animation: float 6s ease-in-out infinite alternate; 
-    will-change: transform; /* Le dice a la tarjeta gráfica del móvil que procese esto aparte */
-}
+.floating { animation: float 6s ease-in-out infinite alternate; will-change: transform; }
 
 .reveal {
-    opacity: 0;
-    transform: translateY(20px); 
+    opacity: 0; transform: translateY(20px); 
     transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
+.reveal.active { opacity: 1; transform: translateY(0); }
 .delay-100 { transition-delay: 0.1s; }
 .delay-200 { transition-delay: 0.2s; }
 .delay-300 { transition-delay: 0.3s; }
