@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. EFECTO NAVBAR MODO CLARO
+    // 1. EFECTO NAVBAR MODO OSCURO PREMIUM
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'border-slate-200', 'shadow-sm', 'py-3');
+            navbar.classList.add('nav-active');
             navbar.classList.remove('border-transparent', 'py-5');
+            navbar.classList.add('py-3');
         } else {
-            navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'border-slate-200', 'shadow-sm', 'py-3');
+            navbar.classList.remove('nav-active', 'py-3');
             navbar.classList.add('border-transparent', 'py-5');
         }
     });
 
-    // 2. ANIMACIÓN DE REVELADO (Intersection Observer)
+    // 2. ANIMACIÓN DE REVELADO (La que estaba fallando)
     const reveals = document.querySelectorAll('.reveal');
-    
     const revealOnScroll = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. EFECTO INCLINACIÓN 3D
     const tiltCards = document.querySelectorAll('.tilt-card');
-    
     tiltCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
@@ -58,9 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
             card.style.transition = "none";
         });
     });
-    // --- SISTEMA DE GALERÍA DINÁMICA ---
+    
+}); // <--- ESTE ERA EL CORCHETE QUE FALTABA Y ROMPÍA TODO
 
-// Base de datos de imágenes (Rutas según tus capturas)
+// --- SISTEMA DE GALERÍA DINÁMICA Y LIGHTBOX ---
+
 const irudiDatuak = [
     // --- ADOPTANTE PC ---
     { rol: 'adoptante', gailua: 'pc', izena: 'Saioa Hasi', src: './capturas/Login/LoginPC.png' },
@@ -88,11 +89,9 @@ const irudiDatuak = [
     { rol: 'protektora', gailua: 'pc', izena: 'Ezarpenak 2', src: './capturas/Protektora/PC/EzarpenakPage2.png' }
 ];
 
-// Variables globales para controlar la galería ampliada
 let unekoArgazkiak = [];
 let unekoIndizea = 0;
 
-// Función que se ejecuta al hacer clic en el menú (Modificada para guardar la lista de fotos)
 window.kargatuGaleria = function(rol, gailua) {
     if(gailua === 'movil') return; 
 
@@ -107,11 +106,9 @@ window.kargatuGaleria = function(rol, gailua) {
 
     galeriaGrid.innerHTML = '';
 
-    // Guardamos las fotos actuales en la variable global para el Lightbox
     unekoArgazkiak = irudiDatuak.filter(img => img.rol === rol && img.gailua === gailua);
 
     unekoArgazkiak.forEach((img, index) => {
-        // Añadimos el onclick y un icono de Lupa al pasar el ratón
         const html = `
             <div class="tilt-card rounded-2xl overflow-hidden border border-white/10 group bg-white/5 cursor-pointer" onclick="irekiLightbox(${index})">
                 <div class="overflow-hidden aspect-video relative">
@@ -132,8 +129,6 @@ window.kargatuGaleria = function(rol, gailua) {
     setTimeout(() => { galeriaSeccion.scrollIntoView({ behavior: 'smooth' }); }, 100);
 };
 
-// --- LOGICA DEL LIGHTBOX (AMPLIAR FOTOS) ---
-
 window.irekiLightbox = function(index) {
     unekoIndizea = index;
     eguneratuLightboxArgazkia();
@@ -142,14 +137,13 @@ window.irekiLightbox = function(index) {
     const img = document.getElementById('lightbox-img');
     
     lb.classList.remove('hidden');
-    // Animación suave de entrada
     setTimeout(() => {
         lb.classList.remove('opacity-0');
         img.classList.remove('scale-95');
         img.classList.add('scale-100');
     }, 10);
     
-    document.body.style.overflow = 'hidden'; // Bloquear scroll de la página
+    document.body.style.overflow = 'hidden'; 
 };
 
 window.itxiLightbox = function() {
@@ -164,12 +158,11 @@ window.itxiLightbox = function() {
         lb.classList.add('hidden');
     }, 300);
     
-    document.body.style.overflow = 'auto'; // Devolver scroll a la página
+    document.body.style.overflow = 'auto'; 
 };
 
 window.aldatuArgazkia = function(norabidea) {
     unekoIndizea += norabidea;
-    // Bucle: si pasas de la última, vuelve a la primera
     if (unekoIndizea < 0) unekoIndizea = unekoArgazkiak.length - 1;
     if (unekoIndizea >= unekoArgazkiak.length) unekoIndizea = 0;
     
@@ -185,7 +178,6 @@ function eguneratuLightboxArgazkia() {
     textElement.innerText = argazkia.izena;
 }
 
-// Controlar el Lightbox con el teclado (Flechas y ESC)
 document.addEventListener('keydown', (e) => {
     const lb = document.getElementById('lightbox');
     if (!lb.classList.contains('hidden')) {
