@@ -11,7 +11,7 @@
     
     <link rel="stylesheet" href="./style.css">
 </head>
-<body class="bg-slate-50 text-slate-800 overflow-x-hidden selection:bg-emerald-500 selection:text-white font-jakarta m-0 p-0">
+<body class="bg-[#050505] text-white overflow-x-hidden selection:bg-[#0052FF] selection:text-white font-jakarta m-0 p-0">
 
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
@@ -20,17 +20,18 @@
         <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
             
             <div class="flex items-center gap-3">
-                <img src="./AdoptappLogo.jpg" alt="Logo AdoptaApp" class="h-12 w-auto rounded-xl shadow-md border border-slate-100">
+                <img src="./AdoptappLogo.jpg" alt="Logo AdoptaApp" class="h-12 w-auto rounded-xl shadow-md border border-white/10">
                 <span class="text-2xl font-extrabold tracking-tight">
                     <span class="text-white">Adopta</span><span class="text-[#D4AF37]">App</span>
                 </span>
             </div>
 
-<ul class="flex flex-row gap-4 md:gap-8 items-center text-white font-semibold text-sm md:text-base">                
+            <ul class="flex flex-row gap-4 md:gap-8 items-center text-white font-semibold text-sm md:text-base">
+                
                 <li class="relative group py-2">
                     <button class="text-[#D4AF37] hover:text-white transition-colors flex items-center gap-2 cursor-pointer font-extrabold">
-    <i class="fa-solid fa-user"></i> Adoptatzailea <i class="fa-solid fa-chevron-down text-xs"></i>
-</button>
+                        <i class="fa-solid fa-user"></i> Adoptatzailea <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
                     <div class="absolute left-0 top-full mt-2 w-44 rounded-xl bg-[#0a0a0b]/95 backdrop-blur-md border border-white/10 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                         <ul class="p-2 flex flex-col gap-1">
                             <li><a href="#galeria" onclick="kargatuGaleria('adoptante', 'pc')" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 hover:text-[#D4AF37] transition-colors"><i class="fa-solid fa-desktop w-4"></i> PC</a></li>
@@ -41,8 +42,8 @@
 
                 <li class="relative group py-2">
                     <button class="text-[#D4AF37] hover:text-white transition-colors flex items-center gap-2 cursor-pointer font-extrabold">
-    <i class="fa-solid fa-house-chimney-paw"></i> Babeslekua <i class="fa-solid fa-chevron-down text-xs"></i>
-</button>
+                        <i class="fa-solid fa-house-chimney-paw"></i> Babeslekua <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
                     <div class="absolute left-0 top-full mt-2 w-44 rounded-xl bg-[#0a0a0b]/95 backdrop-blur-md border border-white/10 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                         <ul class="p-2 flex flex-col gap-1">
                             <li><a href="#galeria" onclick="kargatuGaleria('protektora', 'pc')" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10 hover:text-[#D4AF37] transition-colors"><i class="fa-solid fa-desktop w-4"></i> PC</a></li>
@@ -59,22 +60,22 @@
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             
             <div class="text-left reveal">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold mb-6 tracking-widest uppercase shadow-sm">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0052FF]/10 border border-[#0052FF]/30 text-[#0052FF] text-xs font-bold mb-6 tracking-widest uppercase shadow-sm">
                     <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0052FF] opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-[#0052FF]"></span>
                     </span>
                     2026ko GRAL Proiektua
                 </div>
                 
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-[1.1] tracking-tight text-slate-800">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-[1.1] tracking-tight text-white">
                     Konektatu zure <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-teal-600 animate-gradient-x">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0052FF] to-[#D4AF37] animate-gradient-x">
                         lagun berriarekin
                     </span>
                 </h1>
                 
-                <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-xl font-medium">
+                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-xl font-medium">
                     Denbora errealeko plataforma anitza. Ezagutu, txateatu eta eskatu hitzorduak animalien babeslekuekin edozein gailutatik.
                 </p>
 
@@ -82,7 +83,7 @@
                     <div id="descargas" class="flex flex-col sm:flex-row gap-4">
                         
                         <a href="https://github.com/Stefanvec1/adoptaapp-web/releases/download/v1.0.0/com.companyname.tfgproiektua-Signed.apk" 
-                           class="btn-premium btn-android group flex items-center justify-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-2xl hover:bg-black transition-all shadow-xl hover:shadow-emerald-200/50"
+                           class="btn-premium btn-android group flex items-center justify-center gap-3 px-8 py-4 rounded-2xl transition-all"
                            download="AdoptaApp.apk">
                             <i class="fa-brands fa-android text-2xl group-hover:scale-110 transition-transform"></i>
                             <div class="text-left">
@@ -92,7 +93,7 @@
                         </a>
 
                         <a href="https://github.com/Stefanvec1/adoptaapp-web/releases/download/v1.0.0WIN/AdoptaApp_Windows.zip" 
-                           class="btn-premium btn-windows group flex items-center justify-center gap-3 bg-white border border-slate-200 text-slate-800 px-8 py-4 rounded-2xl hover:border-slate-400 transition-all shadow-lg"
+                           class="btn-premium btn-windows group flex items-center justify-center gap-3 px-8 py-4 rounded-2xl transition-all"
                            download="AdoptaApp_Windows.zip">
                             <i class="fa-brands fa-windows text-2xl group-hover:scale-110 transition-transform"></i>
                             <div class="text-left">
@@ -103,18 +104,18 @@
                         
                     </div>
 
-                    <div class="p-5 rounded-2xl bg-white/60 backdrop-blur-md border border-slate-200 shadow-sm max-w-xl">
-                        <h4 class="font-bold text-slate-800 mb-3 flex items-center gap-2">
-                            <i class="fa-solid fa-screwdriver-wrench text-emerald-600"></i> Instalazio gida
+                    <div class="p-5 rounded-2xl bg-[#0a0a0b]/80 backdrop-blur-md border border-white/10 shadow-xl max-w-xl">
+                        <h4 class="font-bold text-white mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-screwdriver-wrench text-[#D4AF37]"></i> Instalazio gida
                         </h4>
-                        <ul class="space-y-3 text-sm text-slate-600 font-medium">
+                        <ul class="space-y-3 text-sm text-gray-400 font-medium">
                             <li class="flex items-start gap-2">
-                                <i class="fa-brands fa-android text-emerald-500 mt-0.5"></i>
-                                <span><strong class="text-slate-800">Android:</strong> Deskargatu .apk fitxategia, ireki 'Deskargak' karpetatik eta baimendu instalazioa.</span>
+                                <i class="fa-brands fa-android text-[#0052FF] mt-0.5"></i>
+                                <span><strong class="text-white">Android:</strong> Deskargatu .apk fitxategia, ireki 'Deskargak' karpetatik eta baimendu instalazioa.</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fa-brands fa-windows text-[#0052FF] mt-0.5"></i>
-                                <span><strong class="text-slate-800">Windows:</strong> Deskargatu eta atera .zip fitxategiaren edukia. Egin eskuin-klika <code class="bg-slate-100 text-pink-600 px-1.5 py-0.5 rounded font-mono text-xs border border-slate-200">TFGProiektua.exe</code> fitxategian eta doble klik eman <em></em> aplikazioa instalatzeko.</span>
+                                <span><strong class="text-white">Windows:</strong> Deskargatu eta atera .zip fitxategiaren edukia. Egin eskuin-klika <code class="bg-white/10 text-[#D4AF37] px-1.5 py-0.5 rounded font-mono text-xs border border-white/10">TFGProiektua.exe</code> fitxategian eta doble klik eman aplikazioa instalatzeko.</span>
                             </li>
                         </ul>
                     </div>
@@ -122,21 +123,21 @@
             </div>
 
             <div class="relative hidden lg:flex justify-center reveal delay-200">
-                <div class="glass-card w-80 h-96 rounded-3xl p-6 relative z-10 floating border border-white shadow-2xl shadow-slate-200 flex flex-col justify-between bg-white/60 backdrop-blur-xl">
+                <div class="glass-card w-80 h-96 rounded-3xl p-6 relative z-10 floating border border-white/10 shadow-2xl flex flex-col justify-between bg-[#0a0a0b]/60 backdrop-blur-xl">
                     <div class="flex justify-between items-center mb-4">
-                        <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
-                            <i class="fa-solid fa-dog text-emerald-600"></i>
+                        <div class="w-10 h-10 rounded-full bg-[#0052FF]/20 flex items-center justify-center">
+                            <i class="fa-solid fa-dog text-[#0052FF]"></i>
                         </div>
-                        <div class="w-20 h-2 rounded-full bg-slate-200"></div>
+                        <div class="w-20 h-2 rounded-full bg-white/10"></div>
                     </div>
                     <div class="space-y-3">
-                        <div class="w-full h-24 rounded-xl bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-100 flex items-center justify-center overflow-hidden">
-                            <img src="./AdoptappLogo.jpg" class="w-full h-full object-cover opacity-50" alt="Preview">
+                        <div class="w-full h-24 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
+                            <img src="./AdoptappLogo.jpg" class="w-full h-full object-cover opacity-30" alt="Preview">
                         </div>
-                        <div class="w-3/4 h-4 rounded-full bg-slate-200"></div>
-                        <div class="w-1/2 h-4 rounded-full bg-slate-100"></div>
+                        <div class="w-3/4 h-4 rounded-full bg-white/10"></div>
+                        <div class="w-1/2 h-4 rounded-full bg-white/5"></div>
                     </div>
-                    <div class="w-full h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 text-sm font-bold mt-4 shadow-sm">
+                    <div class="w-full h-12 rounded-xl bg-[#D4AF37]/10 border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] text-sm font-bold mt-4 shadow-sm">
                         💬 Hodeian sinkronizatuta
                     </div>
                 </div>
@@ -144,38 +145,39 @@
         </div>
     </section>
 
-    <section class="py-32 relative z-10 border-t border-slate-200 bg-white">
+    <section class="py-32 relative z-10 border-t border-white/10 bg-transparent">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 text-slate-800 reveal">Teknologia kompletua</h2>
+            <h2 class="text-3xl md:text-5xl font-bold text-center mb-16 text-white reveal">Teknologia kompletua</h2>
             
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="tilt-card glass-panel p-8 rounded-3xl border border-slate-100 hover:border-emerald-200 transition-all reveal delay-100 shadow-sm hover:shadow-xl">
-                    <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-600 mb-6 flex items-center justify-center text-xl">
+                <div class="tilt-card p-8 rounded-3xl border border-white/10 hover:border-[#D4AF37] transition-all reveal delay-100 shadow-lg">
+                    <div class="w-12 h-12 rounded-2xl bg-[#0052FF]/20 text-[#0052FF] mb-6 flex items-center justify-center text-xl border border-[#0052FF]/30">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800">Firebase Realtime</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed font-medium">Datu-base ez-erlazionalaren arkitektura, plataformen artean latentziarik gabeko berehalako mezularitza ahalbidetzen duena.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">Firebase Realtime</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-medium">Datu-base ez-erlazionalaren arkitektura, plataformen artean latentziarik gabeko berehalako mezularitza ahalbidetzen duena.</p>
                 </div>
 
-                <div class="tilt-card glass-panel p-8 rounded-3xl border border-slate-100 hover:border-emerald-200 transition-all reveal delay-200 shadow-sm hover:shadow-xl">
-                    <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 mb-6 flex items-center justify-center text-xl">
+                <div class="tilt-card p-8 rounded-3xl border border-white/10 hover:border-[#D4AF37] transition-all reveal delay-200 shadow-lg">
+                    <div class="w-12 h-12 rounded-2xl bg-[#D4AF37]/20 text-[#D4AF37] mb-6 flex items-center justify-center text-xl border border-[#D4AF37]/30">
                         <i class="fa-solid fa-location-crosshairs"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800">Geolokalizazioa</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed font-medium">GPS koordenatu bidezko iragazketa-algoritmoa, erabiltzaileak zehaztutako erradioan bat-etortze zehatzak erakusteko.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">Geolokalizazioa</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-medium">GPS koordenatu bidezko iragazketa-algoritmoa, erabiltzaileak zehaztutako erradioan bat-etortze zehatzak erakusteko.</p>
                 </div>
 
-                <div class="tilt-card glass-panel p-8 rounded-3xl border border-slate-100 hover:border-emerald-200 transition-all reveal delay-300 shadow-sm hover:shadow-xl">
-                    <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-600 mb-6 flex items-center justify-center text-xl">
+                <div class="tilt-card p-8 rounded-3xl border border-white/10 hover:border-[#D4AF37] transition-all reveal delay-300 shadow-lg">
+                    <div class="w-12 h-12 rounded-2xl bg-[#0052FF]/20 text-[#0052FF] mb-6 flex items-center justify-center text-xl border border-[#0052FF]/30">
                         <i class="fa-brands fa-microsoft"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800">.NET MAUI</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed font-medium">Windows eta Androiderako jatorrizko moduan konpilatutako kode-base bakarra, lehen mailako errendimendua bermatuz.</p>
+                    <h3 class="text-xl font-bold mb-3 text-white">.NET MAUI</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed font-medium">Windows eta Androiderako jatorrizko moduan konpilatutako kode-base bakarra, lehen mailako errendimendua bermatuz.</p>
                 </div>
             </div>
         </div>
     </section>
-<section id="galeria" class="py-24 relative z-10 border-t border-white/10 bg-[#050505] hidden">
+
+    <section id="galeria" class="py-24 relative z-10 border-t border-white/10 bg-transparent hidden">
         <div class="max-w-7xl mx-auto px-6">
             <h2 id="galeria-titulua" class="text-3xl md:text-5xl font-bold text-center mb-4 text-white">Aplikazioaren Irudiak</h2>
             <p id="galeria-azpititulua" class="text-center text-[#D4AF37] mb-12 font-medium tracking-widest uppercase">Hautatu kategoria bat</p>
@@ -184,6 +186,7 @@
             </div>
         </div>
     </section>
+
     <div id="lightbox" class="fixed inset-0 z-[100] bg-[#050505]/95 hidden flex justify-center items-center backdrop-blur-md transition-opacity duration-300 opacity-0">
         <button onclick="itxiLightbox()" class="absolute top-6 right-6 md:top-10 md:right-10 text-white hover:text-[#D4AF37] text-5xl z-50 transition-colors">&times;</button>
         
@@ -195,15 +198,16 @@
         
         <div id="lightbox-text" class="absolute bottom-6 left-0 w-full text-center text-[#D4AF37] font-bold text-2xl tracking-wide"></div>
     </div>
-    <footer class="py-12 border-t border-slate-100 bg-white text-center relative z-10">
+
+    <footer class="py-12 border-t border-white/10 bg-transparent text-center relative z-10">
         <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-4">
             <div class="flex items-center gap-2">
-                <img src="./AdoptappLogo.jpg" alt="Logo Footer" class="h-8 w-auto rounded-lg">
+                <img src="./AdoptappLogo.jpg" alt="Logo Footer" class="h-8 w-auto rounded-lg border border-white/10">
                 <span class="text-xl font-bold tracking-tight">
-                    <span class="text-black">Adopta</span><span class="text-[#D4AF37]">App</span>
+                    <span class="text-white">Adopta</span><span class="text-[#D4AF37]">App</span>
                 </span>
             </div>
-            <p class="text-sm text-slate-400">&copy; 2026 AdoptaApp. Stefanek pasioz garatutako GRALa.</p>
+            <p class="text-sm text-gray-500">&copy; 2026 AdoptaApp. Stefanek pasioz garatutako GRALa.</p>
         </div>
     </footer>
 
