@@ -1,10 +1,16 @@
 /* PALETA: Luxury Tech (Negro, Azul Eléctrico, Dorado y Blanco) */
 :root {
     --bg-dark: #050505;           /* Negro profundo */
+    --bg-panel: #0a0a0b;          /* Negro un poco más claro para tarjetas */
     --electric-blue: #0052FF;     /* Azul Eléctrico vibrante */
+    --electric-blue-glow: rgba(0, 82, 255, 0.4);
     --gold: #D4AF37;              /* Dorado clásico */
-    --gold-light: #F1D37E;        /* Dorado brillante para reflejos */
-    --slate-text: #94A3B8;        /* Gris azulado para textos secundarios */
+    --gold-glow: rgba(212, 175, 55, 0.3);
+    --slate-text: #94A3B8;        
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -13,128 +19,163 @@ body {
     color: white;
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* VITAL: Evita que se pueda hacer scroll hacia los lados en móvil */
+    -webkit-font-smoothing: antialiased; /* Texto más nítido en móviles */
 }
 
-/* Scrollbar Personalizada */
-::-webkit-scrollbar { width: 8px; }
+/* Scrollbar Personalizada Premium */
+::-webkit-scrollbar { width: 6px; } /* Más fina en móvil */
+@media (min-width: 768px) { ::-webkit-scrollbar { width: 8px; } }
 ::-webkit-scrollbar-track { background: var(--bg-dark); }
 ::-webkit-scrollbar-thumb { 
-    background: linear-gradient(var(--electric-blue), var(--gold)); 
+    background: linear-gradient(to bottom, var(--electric-blue), var(--gold)); 
     border-radius: 10px; 
 }
 
-/* Orbes de fondo (Efecto atmósfera de lujo) */
+/* --- ORBES RESPONSIVOS (Magia pura en móvil y PC) --- */
 .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(120px);
+    filter: blur(80px); /* Menos blur en móvil para que no vaya a tirones */
     z-index: 0;
     opacity: 0.3;
     animation: float 12s infinite ease-in-out alternate;
+    pointer-events: none; /* Evita que molesten al hacer clic en botones */
 }
+@media (min-width: 768px) { .orb { filter: blur(120px); } }
+
 .orb-1 {
-    width: 500px; height: 500px;
+    width: 80vw; max-width: 500px; 
+    height: 80vw; max-height: 500px;
     background: var(--electric-blue);
-    top: -150px; left: -100px;
+    top: -10%; left: -20%;
 }
 .orb-2 {
-    width: 400px; height: 400px;
+    width: 70vw; max-width: 400px; 
+    height: 70vw; max-height: 400px;
     background: var(--gold);
-    bottom: 10%; right: -50px;
+    bottom: 5%; right: -10%;
     animation-delay: -6s;
 }
 
-/* Navbar Cristal Negro */
+/* --- NAVBAR CRISTAL NEGRO --- */
 .nav-active {
-    background: rgba(10, 10, 11, 0.8) !important;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2); /* Borde dorado sutil */
+    background: rgba(5, 5, 5, 0.85) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--gold-glow) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Tarjetas Glassmorphism con borde dorado */
+/* --- TARJETAS GLASSMORPHISM OPTIMIZADAS --- */
 .tilt-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 1.5rem;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.4s, box-shadow 0.4s;
 }
 
-.tilt-card:hover {
-    border-color: var(--gold);
-    box-shadow: 0 25px 50px -12px rgba(0, 82, 255, 0.2);
-    background: rgba(255, 255, 255, 0.06);
+/* Efectos HOVER (Solo se activan si estás en un PC con ratón) */
+@media (hover: hover) {
+    .tilt-card:hover {
+        border-color: var(--gold);
+        box-shadow: 0 20px 40px -10px var(--electric-blue-glow);
+        background: rgba(255, 255, 255, 0.04);
+        transform: translateY(-5px);
+    }
+    
+    .btn-android:hover {
+        background: #0044D6;
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 15px 30px -5px var(--electric-blue-glow);
+    }
+
+    .btn-windows:hover {
+        background: var(--gold);
+        color: #000;
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 15px 30px -5px var(--gold-glow);
+    }
 }
 
-.icon-box {
-    width: 60px; height: 60px;
-    border-radius: 18px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(212, 175, 55, 0.3); /* Contorno dorado */
-    color: var(--gold);
+/* Efecto ACTIVE (Lo que pasa cuando tocas con el dedo en el móvil) */
+.tilt-card:active, .btn-premium:active {
+    transform: scale(0.96);
+    transition: transform 0.1s;
 }
 
-/* Botones con estilo Premium */
+/* --- BOTONES PREMIUM RESPONSIVOS --- */
 .btn-premium {
     position: relative;
     display: inline-flex; align-items: center; justify-content: center;
-    gap: 0.8rem;
-    padding: 1.2rem 2.5rem;
-    border-radius: 1.2rem;
-    font-weight: 700;
+    gap: 0.6rem;
+    padding: 1rem 1.2rem; /* Más pequeños en móvil para que quepan bien */
+    border-radius: 1rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.4s;
-    overflow: hidden;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    width: 100%; /* En móvil ocupan todo el ancho, como los botones de Apple */
 }
 
-/* Botón Android (Azul Eléctrico) */
+/* Cuando la pantalla es de PC o Tablet, vuelven a su tamaño normal */
+@media (min-width: 640px) {
+    .btn-premium {
+        padding: 1.2rem 2.5rem;
+        font-size: 1rem;
+        gap: 0.8rem;
+        letter-spacing: 1px;
+        width: auto; 
+    }
+}
+
 .btn-android {
     background: var(--electric-blue);
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 20px -5px rgba(0, 82, 255, 0.5);
-}
-.btn-android:hover {
-    background: #0044D6;
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 15px 30px -5px rgba(0, 82, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 16px -4px var(--electric-blue-glow);
 }
 
-/* Botón Windows (Negro y Dorado) */
 .btn-windows {
-    background: #000;
+    background: var(--bg-panel);
     color: var(--gold);
     border: 1px solid var(--gold);
-}
-.btn-windows:hover {
-    background: var(--gold);
-    color: #000;
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 15px 30px -5px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 8px 16px -4px rgba(0,0,0,0.5);
 }
 
-/* Texto Graduado Eléctrico-Dorado */
-.text-gradient {
-    background: linear-gradient(to right, #0052FF, #8B5CF6, #D4AF37);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+/* --- ICONOS --- */
+.icon-box {
+    width: 50px; height: 50px; /* Más pequeños en móvil */
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--gold-glow);
+    color: var(--gold);
+}
+@media (min-width: 768px) {
+    .icon-box { width: 60px; height: 60px; font-size: 1.5rem; border-radius: 18px; }
 }
 
-/* Animaciones */
+/* --- ANIMACIONES DE RENDIMIENTO (Mejora de FPS) --- */
 @keyframes float {
     0% { transform: translateY(0px) rotate(0deg); }
-    100% { transform: translateY(40px) rotate(5deg); }
+    100% { transform: translateY(20px) rotate(3deg); } /* Movimiento más sutil */
 }
 
-.floating { animation: float 6s ease-in-out infinite alternate; }
+.floating { 
+    animation: float 6s ease-in-out infinite alternate; 
+    will-change: transform; /* Le dice a la tarjeta gráfica del móvil que procese esto aparte */
+}
 
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(20px); 
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
 }
 
 .reveal.active {
